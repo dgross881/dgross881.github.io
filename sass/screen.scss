@@ -1,9 +1,10 @@
 @import "base";
 @import "coderay-github";
-//@import "coderay-twilight";
+@import "coderay-twilight";
 
 #site-head {
-  background-image: url(images/cover.jpg);
+  background-image:url('/images/cover.jpg');
+  background-repeat: no-repeat; 
 }
 
 .footnotes {
