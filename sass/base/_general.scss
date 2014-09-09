@@ -335,7 +335,7 @@ table.plain {
     position: relative;
     width: 80%;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 60px;
 }
 
 /* Centres vertically yo. (IE8+) */
@@ -346,13 +346,13 @@ table.plain {
 
 /* Opt-out of anchor rollovers */
 .no-rollover {
-    color: #fff;
+    color: #40E0D0;
     text-decoration: none;
     transition: none;
 }
 
 .no-rollover:hover {
-    color: #fff;
+    color: #00FFFF;
 }
 
 /* ==========================================================================
@@ -367,7 +367,7 @@ table.plain {
     height: 60%;
     margin-bottom: 5rem;
     text-align: center;
-    color: #fff;
+    color: #FF1493;
     background: #303538 no-repeat center center;
     background-size: cover;
 }
@@ -399,9 +399,9 @@ table.plain {
 
 .blog-description {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2.6rem;
     line-height: 1.5em;
-    font-weight: 300;
+    font-weight: 180;
     font-family: 'Droid Serif', serif;
     letter-spacing: 0;
 }
