@@ -1,10 +1,15 @@
-@import "compass";
-@include global-reset;
-
-@import "custom/colors";
-@import "custom/fonts";
-@import "custom/layout";
 @import "base";
-@import "partials";
-@import "plugins/**/*";
-@import "custom/styles";
+@import "coderay-github";
+//@import "coderay-twilight";
+
+#site-head {
+  background-image: url(/images/cover.jpg);
+}
+
+.footnotes {
+  font-size: 13px;
+  line-height: 16px;
+  color: #666;
+  a[rel=reference] { text-decoration: none; }
+  p { margin-bottom: 6px; }
+}

@@ -33,13 +33,18 @@ destination: public
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
-markdown: rdiscount
+markdown: kramdown
+  kramdown:
+    user_coderay: true 
+    coderay:
+      coderay_line_numbers: nil
+      coderay_css: class  
 rdiscount:
   extensions:
     - autolink
     - footnotes
     - smart
-highlighter: pygments # default python pygments have been replaced by pygments.rb
+highlighter: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
 paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/
