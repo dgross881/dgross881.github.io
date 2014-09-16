@@ -5,11 +5,12 @@
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta charset="utf-8">
-	<title>Adavnced feature specs | Daves Ruby Blog</title>
+	<title>Advanced feature specs | Daves Ruby Blog</title>
 
 	<meta name="author" content="David Gross">
 	
-	<meta name="description" content="Daves Ruby Blog 22 Apr 2014 Adavnced Feature Specs Writing Advanced Feature for queue items - @queue_items.each do |queue_item| %tr[queue_item.video &hellip;">
+	<meta name="description" content="Daves Ruby Blog 22 Apr 2014 Advanced Feature Specs Writing Advance Features for queue items index page. Haml makes it very easy to
+assign a dom_id &hellip;">
 
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="MobileOptimized" content="320" />
@@ -30,12 +31,16 @@
 		<a id="blog-logo" href="/">Daves Ruby Blog</a>
 	</header>
 	<span class="post-meta">22 Apr 2014</span>
-	<h1 class="post-title">Adavnced Feature Specs</h1>
+	<h1 class="post-title">Advanced Feature Specs</h1>
 
 	<section class="post-content">
-		<p>Writing Advanced Feature for queue items </p>
+		<p>Writing Advance Features for queue items index page. Haml makes it very easy to
+assign a dom_id to specific html tag. In my example below I used it on %tr[queue_item.video]. 
+This allows to the ability to identify a specific table with the video_id format. If you view your
+code you will see the &lt;tr&gt; element now contains id=’video_id’.  </p>
 
-<pre lang="ruby"><code>  - @queue_items.each do |queue_item| 
+<pre lang="ruby"><code>
+  - @queue_items.each do |queue_item| 
    %tr[queue_item.video]
      = hidden_field_tag "queue_items[][id]", queue_item.id 
      %td=text_field_tag "queue_items[][position]", queue_item.position 
@@ -44,57 +49,57 @@
      %td
 </code></pre>
 
-<pre lang="ruby"><code> feature "Users queue items" do 
-  scenario "Signed in user can add queue_items" do 
+<p lang="ruby">Dom_id helper method located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
+specify the id attribute of an element. ActionView::RecordIdentifier.dom_id will generate 
+queue_item.video.id in the form of “video + underscore+ id”, example: video_1, video_2 , etc..
+~~~
+module RailsDomIdHelper
+  def dom_id_for(video) 
+    [’#’, ActionView::RecordIdentifier.dom_id(video)].join
+  end 
+end 
+~~~</p>
+
+<p>In this example dom_id allows me to easily test the Rspec feautures of my
+ queue_items ability to change positions in the queue. I am using the support method dom_id_for 
+ in a within capybara block on the set_video_position method. 
+~~~
+ feature “Users queue items” do 
+  scenario “Signed in user can add queue_items” do 
     comedy = Fabricate(:category)
-    southpark = Fabricate(:video, title: "southpark", category: comedy) 
-    futurama = Fabricate(:video, title: "futurama", category: comedy) 
-    familyguy = Fabricate(:video, title: "family guy", category: comedy)
+    southpark = Fabricate(:video, title: “southpark”, category: comedy) 
+    futurama = Fabricate(:video, title: “futurama”, category: comedy) 
+    familyguy = Fabricate(:video, title: “family guy”, category: comedy)
     user = Fabricate(:user)
-    sign_in user  
-    
-    add_video_to_queue(southpark)
-    expect(page).to have_content("#{southpark.title} was successfully added to your queue")
-    
-    visit video_path(southpark)
-    expect(page).to_not have_content "+ My Queues"
+    sign_in user  </p>
 
-    add_video_to_queue(futurama)
-    add_video_to_queue(familyguy)
+<pre><code>add_video_to_queue(futurama)
+add_video_to_queue(familyguy)
+set_video_position(familyguy, 2)
+set_video_position(southpark, 3)
+set_video_position(futurama, 1)
 
-    set_video_position(familyguy, 2)
-    set_video_position(southpark, 3)
-    set_video_position(futurama, 1)
-    
-    click_button "Update Instant Queue"
-    
-    expect(user.queue_items.first.video_id).to eq(futurama.id) 
-    expect(user.queue_items.second.video_id).to eq(familyguy.id)
-    expect(user.queue_items.third.video_id).to eq(southpark.id)
-  end 
-end 
-  
-  def set_video_position(video, position)
+click_button "Update Instant Queue"
+
+expect(user.queue_items.first.video_id).to eq(futurama.id) 
+expect(user.queue_items.second.video_id).to eq(familyguy.id)
+expect(user.queue_items.third.video_id).to eq(southpark.id)   end  end 
+</code></pre>
+
+<p>def set_video_position(video, position)
     within dom_id_for video do
-      fill_in "queue_items[][position]", with: position 
+      fill_in “queue_items[][position]”, with: position 
     end 
-  end 
-  
-  def add_video_to_queue(video)
+  end </p>
+
+<p>def add_video_to_queue(video)
     visit home_path 
-    find("a[href='/videos/#{video.id}']").click
-    click_link "+ My Queues" 
+    find(“a[href=’/videos/#{video.id}’]”).click
+    click_link “+ My Queues” 
   end 
-end
+end</p>
 
-</code></pre>
-
-<pre lang="ruby"><code>module RailsDomIdHelper
-  def dom_id_for(model) 
-    ['#', ActionView::RecordIdentifier.dom_id(model)].join
-  end 
-end 
-</code></pre>
+<p lang="ruby">~~~</p>
 
 
 	</section>
@@ -106,7 +111,7 @@ end
   </section>
   <section class="share">
     <h4>Share this post</h4>
-    <a class="icon-twitter" href="http://twitter.com/share?text=Adavnced feature specs&amp;url=http://dgross881.github.io/blog/2014/04/22/a-sample-post/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+    <a class="icon-twitter" href="http://twitter.com/share?text=Advanced feature specs&amp;url=http://dgross881.github.io/blog/2014/04/22/a-sample-post/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
     </a>
     <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://dgross881.github.io/blog/2014/04/22/a-sample-post/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
