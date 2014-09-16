@@ -9,7 +9,7 @@ categories: [feature specs]
 Writing Advance Features for queue items index page. Haml makes it very easy to
 assign a dom_id to specific html tag. In my example below I used it on %tr[queue_item.video]. 
 This allows to the ability to identify a specific table with the video_id format. If you view your
-code you will see the <tr> element now contains id='video_id'.  
+code you will now have the id='video_#' within the tr tags.  
 
 [^1]:[dom_id](http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html).
 ~~~
@@ -26,21 +26,26 @@ code you will see the <tr> element now contains id='video_id'.
 
 Dom_id helper method located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
 specify the id attribute of an element. ActionView::RecordIdentifier.dom_id will generate 
-queue_item.video.id in the form of "video + underscore+ id", example: video_1, video_2 , etc..
+queue_item.video.id in the form of "video_id". Example: video_1, video_2 , etc..
+
 ~~~
+
 module RailsDomIdHelper
   def dom_id_for(video) 
     ['#', ActionView::RecordIdentifier.dom_id(video)].join
   end 
 end 
+
 ~~~
 {:lang="ruby"}
 
  In this example dom_id allows me to easily test the Rspec feautures of my
  queue_items ability to change positions in the queue. I am using the support method dom_id_for 
- in a within capybara block on the set_video_position method. 
+ in a within capybara block on the set_video_position method.
+
 ~~~
- feature "Users queue items" do 
+
+feature "Users queue items" do 
   scenario "Signed in user can add queue_items" do 
     comedy = Fabricate(:category)
     southpark = Fabricate(:video, title: "southpark", category: comedy) 
@@ -78,6 +83,8 @@ end
 
 ~~~
 {:lang="ruby"}
+
+
 
 
 
