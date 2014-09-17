@@ -6,12 +6,12 @@ comments: true
 categories: [feature specs]
 ---
 
-  Writing Advance Features for queue items index page. Haml makes it very easy to
-assign a dom_id to specific html tag. In my example below I used it on %tr[queue_item.video]. 
-This allows to the ability to identify a specific table with the video_id format. If you view your
-code you will now have the id='video_#' within the tr tags.  
+  Writing Advanced Features for queue items index page. Haml makes it very easy to
+assign a dom_id to specific html tag. In my example below, I used the dom_id on %tr[queue_item.video]. 
+This allows the ability to identify a specific table with the video_id format. 
+The code will now have the id='video_#' within the tr tags.  
 
-[^1]:[dom_id](http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html).
+[dom_id](http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html).
 ~~~
 
   - @queue_items.each do |queue_item| 
@@ -24,7 +24,7 @@ code you will now have the id='video_#' within the tr tags.
 ~~~
 {:lang="ruby"}
 
-  Dom_id helper method located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
+  The dom_id_for helper method is located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
 specify the id attribute of an element. ActionView::RecordIdentifier.dom_id will generate 
 queue_item.video.id in the form of "video_id". Example: video_1, video_2 , etc..
 
@@ -39,7 +39,7 @@ end
 ~~~
 {:lang="ruby"}
 
-   In this example dom_id allows me to easily test the Rspec features of my
+   In this example, dom_id allows me to easily test the Rspec features of my
  queue_items ability to change positions in the queue. I am using the support method dom_id_for 
  in a within capybara block on the set_video_position method.
 
@@ -83,6 +83,7 @@ end
 
 ~~~
 {:lang="ruby"}
+
 
 
 
