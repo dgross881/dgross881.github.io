@@ -4,7 +4,7 @@
   <title><![CDATA[Daves Ruby Blog]]></title>
   <link href="http://dgross881.github.io/atom.xml" rel="self"/>
   <link href="http://dgross881.github.io/"/>
-  <updated>2014-09-17T09:55:16+08:00</updated>
+  <updated>2014-09-17T10:07:14+08:00</updated>
   <id>http://dgross881.github.io/</id>
   <author>
     <name><![CDATA[David Gross]]></name>
@@ -18,22 +18,26 @@
     <link href="http://dgross881.github.io/blog/2014/04/22/a-sample-post/"/>
     <updated>2014-04-22T14:40:00+08:00</updated>
     <id>http://dgross881.github.io/blog/2014/04/22/a-sample-post</id>
-    <content type="html"><![CDATA[<p>Writing Advance Features for queue items index page. Haml makes it very easy to
-assign a dom_id to specific html tag. In my example below I used it on %tr[queue_item.video]. 
-This allows to the ability to identify a specific table with the video_id format. If you view your
-code you will now have the id=’video_#’ within the tr tags.  </p>
+    <content type="html"><![CDATA[<p>Writing Advanced Features for queue items index page. Haml makes it very easy to
+assign a dom_id to specific html tag. In my example below, I used the dom_id on %tr[queue_item.video]. 
+This allows the ability to identify a specific table with the video_id format. 
+The code will now have the id=’video_#’ within the tr tags.  </p>
 
-<pre lang="ruby"><code>
-  - @queue_items.each do |queue_item| 
+<p><a href="http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html">dom_id</a>.
+~~~</p>
+
+<ul lang="ruby">
+  <li>@queue_items.each do |queue_item| 
    %tr[queue_item.video]
-     = hidden_field_tag "queue_items[][id]", queue_item.id 
-     %td=text_field_tag "queue_items[][position]", queue_item.position 
-     %td
-       = link_to queue_item.video_title, queue_item.video
-     %td
-</code></pre>
+ = hidden_field_tag “queue_items[][id]”, queue_item.id 
+ %td=text_field_tag “queue_items[][position]”, queue_item.position 
+ %td
+   = link_to queue_item.video_title, queue_item.video
+ %td
+~~~</li>
+</ul>
 
-<p>Dom_id helper method located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
+<p>The dom_id_for helper method is located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
 specify the id attribute of an element. ActionView::RecordIdentifier.dom_id will generate 
 queue_item.video.id in the form of “video_id”. Example: video_1, video_2 , etc..</p>
 
@@ -46,7 +50,7 @@ end
 
 </code></pre>
 
-<p>In this example dom_id allows me to easily test the Rspec features of my
+<p>In this example, dom_id allows me to easily test the Rspec features of my
  queue_items ability to change positions in the queue. I am using the support method dom_id_for 
  in a within capybara block on the set_video_position method.</p>
 
