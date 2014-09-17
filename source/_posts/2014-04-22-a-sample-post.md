@@ -6,12 +6,13 @@ comments: true
 categories: [feature specs]
 ---
 
-  Writing Advanced Features for queue items index page. Haml makes it very easy to
+  Writing Advanced Features for queue items index page using the dom_id method. Haml makes it very easy to
 assign a dom_id to specific html tag. In my example below, I used the dom_id on %tr[queue_item.video]. 
 This allows the ability to identify a specific table with the video_id format. 
 The code will now have the id='video_#' within the tr tags.  
 
-[dom_id](http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html).
+More information on [dom_id](http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html).
+
 ~~~
 
   - @queue_items.each do |queue_item| 
@@ -21,6 +22,7 @@ The code will now have the id='video_#' within the tr tags.
      %td
        = link_to queue_item.video_title, queue_item.video
      %td
+
 ~~~
 {:lang="ruby"}
 
@@ -83,6 +85,9 @@ end
 
 ~~~
 {:lang="ruby"}
+
+
+
 
 
 
