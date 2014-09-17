@@ -4,7 +4,7 @@
   <title><![CDATA[Category: feature specs | Daves Ruby Blog]]></title>
   <link href="http://dgross881.github.io/blog/categories/feature-specs/atom.xml" rel="self"/>
   <link href="http://dgross881.github.io/"/>
-  <updated>2014-09-17T00:07:48+08:00</updated>
+  <updated>2014-09-17T09:55:16+08:00</updated>
   <id>http://dgross881.github.io/</id>
   <author>
     <name><![CDATA[David Gross]]></name>
@@ -46,7 +46,7 @@ end
 
 </code></pre>
 
-<p>In this example dom_id allows me to easily test the Rspec feautures of my
+<p>In this example dom_id allows me to easily test the Rspec features of my
  queue_items ability to change positions in the queue. I am using the support method dom_id_for 
  in a within capybara block on the set_video_position method.</p>
 
