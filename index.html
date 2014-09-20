@@ -9,8 +9,8 @@
 
 	<meta name="author" content="David Gross">
 	
-	<meta name="description" content="22 Apr 2014 Advanced Feature Specs Writing Advanced Features for queue items index page. Haml makes it very easy to
-assign a dom_id to specific html &hellip;">
+	<meta name="description" content="22 Apr 2014 Advanced Feature Specs Writing Advanced Features for queue items index page using the dom_id method. Haml makes it very easy to
+assign a &hellip;">
 
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="MobileOptimized" content="320" />
@@ -52,24 +52,23 @@ assign a dom_id to specific html &hellip;">
 		</h2>
 	</header>
 	<section class="post-excerpt">
-		<p>Writing Advanced Features for queue items index page. Haml makes it very easy to
+		<p>Writing Advanced Features for queue items index page using the dom_id method. Haml makes it very easy to
 assign a dom_id to specific html tag. In my example below, I used the dom_id on %tr[queue_item.video]. 
 This allows the ability to identify a specific table with the video_id format. 
 The code will now have the id=’video_#’ within the tr tags.  </p>
 
-<p><a href="http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html">dom_id</a>.
-~~~</p>
+<p>More information on <a href="http://api.rubyonrails.org/classes/ActionView/RecordIdentifier.html">dom_id</a>.</p>
 
-<ul lang="ruby">
-  <li>@queue_items.each do |queue_item| 
+<pre lang="ruby"><code>
+  - @queue_items.each do |queue_item| 
    %tr[queue_item.video]
- = hidden_field_tag “queue_items[][id]”, queue_item.id 
- %td=text_field_tag “queue_items[][position]”, queue_item.position 
- %td
-   = link_to queue_item.video_title, queue_item.video
- %td
-~~~</li>
-</ul>
+     = hidden_field_tag "queue_items[][id]", queue_item.id 
+     %td=text_field_tag "queue_items[][position]", queue_item.position 
+     %td
+       = link_to queue_item.video_title, queue_item.video
+     %td
+
+</code></pre>
 
 <p>The dom_id_for helper method is located at spec/support/dom_id_for_helper.rb. The # sign is used as a shortcut to
 specify the id attribute of an element. ActionView::RecordIdentifier.dom_id will generate 
